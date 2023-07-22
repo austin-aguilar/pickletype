@@ -1,6 +1,6 @@
 const rand_quote_url = 'http://api.quotable.io/random'
-const quoteDisplayElement = document.getElementById('quoteDisplay')
-const quoteInputElement = document.getElementById('quoteInput')
+const quoteDisplayElement = document.getElementById('quoteDisplay');
+const quoteInputElement = document.getElementById('quoteInput');
 
 
 quoteInputElement.addEventListener('input', ()=> {
@@ -31,9 +31,10 @@ function getRandomQuote(){
         .then(data => data.content)
 }
 
+let wordCount;
 async function renderNewQuote(){
     const quote = await getRandomQuote()
-    console.log(quote)
+    wordCount = quote.split(' ').length;
     quoteDisplayElement.innerHTML = ''
     quote.split('').forEach(char =>{
         const charSpan = document.createElement('span')
@@ -67,7 +68,11 @@ function startTimer(){
 
 function stopTimer() {
     clearInterval(interval);
-    timer.innerText = getTimerTime();
+    console.log(`Word Count: ${wordCount}`)
+    const finalTime = getTimerTime();
+    const WPM = Math.floor((wordCount/finalTime)*60)
+    timer.innerText = `You typed at a speed of ${WPM} words per minute!`;
+    return finalTime
 }
 
 function getTimerTime(){
