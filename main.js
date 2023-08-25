@@ -78,5 +78,3 @@ function stopTimer() {
 function getTimerTime(){
     return Math.floor((new Date() - startTime)/1000)
 }
-
-
