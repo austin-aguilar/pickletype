@@ -9,34 +9,64 @@ export default function TypingForm() {
     e.preventDefault();
     try {
       const response = await axios.get("http://localhost:3000/quotes");
-      setQuote(response.data[0].quote);
+      const mainQuote = response.data[0].quote;
+      setQuote(mainQuote.split(""));
     } catch (e) {
       console.log("fetching", e.message);
     }
   };
 
   const handleQuit = async function (e) {
+    e.preventDefault;
     setQuote("");
+    setTyped("");
+    const textarea = document.querySelector("textarea");
+    textarea.value = "";
+  };
+
+  const handleChange = async function (e) {
+    setTyped(e.target.value);
   };
 
   return (
-    <div className="card">
+    <>
       <div className="card">
-        {!quote ? (
-          <h4>Press start to begin!</h4>
-        ) : (
-          <h4 className="typingText">{quote}</h4>
-        )}
-        <div className="container">
-          <textarea
-            className="typeBox"
-            autoFocus
-            onChange={(e) => setTyped(e.target.value)}
-          ></textarea>
+        <div className="card">
+          {!quote ? (
+            <h4>Press start to begin!</h4>
+          ) : (
+            <div className="quote-container">
+              {quote.map((q, index) => {
+                return (
+                  <span
+                    key={index}
+                    style={{
+                      color: `${
+                        q !== typed[index] && typed[index] !== undefined
+                          ? "red"
+                          : q === typed[index]
+                          ? "green"
+                          : "white"
+                      }`,
+                    }}
+                  >
+                    {q}
+                  </span>
+                );
+              })}
+            </div>
+          )}
+          <div className="container">
+            <textarea
+              className="typeBox"
+              autoFocus
+              onChange={handleChange}
+            ></textarea>
+          </div>
+          <button onClick={handleClick}>Start</button>
+          <button onClick={handleQuit}>Quit</button>
         </div>
-        <button onClick={handleClick}>Start</button>
-        <button onClick={handleQuit}>Quit</button>
       </div>
-    </div>
+    </>
   );
 }
