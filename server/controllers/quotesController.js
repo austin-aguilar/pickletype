@@ -6,7 +6,7 @@ const fetchQuotes = async (req, res) => {
     request.get({
         url: 'https://api.api-ninjas.com/v1/quotes?category=movies',
         headers: {
-            'X-Api-Key': 'G3hn10lPFgf8maNUbkMK0g==QcSwIX30oztFmDiB'
+            'X-Api-Key': process.env.API_KEY
         },
     }, function (error, response, body) {
         if (error) return console.error('Request failed:', error);

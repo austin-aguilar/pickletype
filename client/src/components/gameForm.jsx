@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 
-export default function TypingForm() {
+export default function GameForm() {
   const [quote, setQuote] = useState("");
   const [typed, setTyped] = useState("");
 

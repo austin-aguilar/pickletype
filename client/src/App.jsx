@@ -1,11 +1,11 @@
 import "./App.css";
-import { TypingForm } from "./components/typingTestForm";
+import GameForm from "./components/gameForm";
 
 function App() {
   return (
     <>
       <h1>Pickle Type</h1>
-      <TypingForm />
+      <GameForm />
     </>
   );
 }
