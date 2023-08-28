@@ -1,5 +1,5 @@
 # pickletype
-Small project for me to practice code and test keyboards on.
+A full stack typing game that utilizes API-ninjas random quote generator. This project uses MongoDB, Express.js, React.js, and Node.js.
 
 ## Enviornment
 
