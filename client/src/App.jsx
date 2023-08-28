@@ -1,5 +1,5 @@
 import "./App.css";
-import { TypingForm } from "./components/typingForm";
+import { TypingForm } from "./components/typingTestForm";
 
 function App() {
   return (
